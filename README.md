@@ -40,7 +40,8 @@ mkdocs serve
 
 Y abrir `http://localhost:8000`.
 
-La versión publicada vive en GitHub Pages: *(URL pendiente de configurar tras el primer deploy)*.
+La versión publicada vive en
+[carlosmolinacenteno.github.io/tfg-solar-abm](https://carlosmolinacenteno.github.io/tfg-solar-abm/).
 
 ## Uso del modelo
 
