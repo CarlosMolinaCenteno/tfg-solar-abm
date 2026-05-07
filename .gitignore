@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MkDocs build
+site/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Memoria de Claude
+.claude/
+CLAUDE.md
+
+# LaTeX (no compartimos artefactos compilados)
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.blg
+*.lof
+*.lot
+*.fdb_latexmk
+*.fls
+*.synctex.gz
