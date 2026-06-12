@@ -1,0 +1,12 @@
+Indicador,Sin almacenamiento,Con almacenamiento,Variación
+Precio medio mañana (P_M),37.32,104.01,+178.7%
+Precio medio tarde (P_E),192.71,119.40,-38.0%
+Ratio P_M/P_E,0.194,0.874,—
+Gas medio mañana (Q_G^M),27.59,60.68,+120.0%
+Gas medio tarde (Q_G^E),97.54,67.48,-30.8%
+Gas total,125.13,128.17,+2.4%
+Beneficio medio agente,209.44,275.19,+31.4%
+Fracción media almac.,0.00,0.633,—
+Desv. típ. temporal P_M,1.43,5.38,—
+Desv. típ. temporal P_E,0.90,5.14,—
+Coste de gas acumulado,4306703,3137667,-27.1%

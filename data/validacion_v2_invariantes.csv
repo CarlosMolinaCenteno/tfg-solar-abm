@@ -1,0 +1,10 @@
+invariante,celdas,violaciones,error_max
+"stored == min(s, eta*f*q~M)",13444,0,2.220446049250313e-16
+qE == q~E + stored,13444,0,4.440892098500626e-16
+"qM,qE,stored >= 0",15000,0,0.0
+stored <= s,15000,0,0.0
+stored <= eta*f*q~M,13444,0,0.0
+"f en malla {0,0.1,..,1}",15000,0,0.0
+clearing mañana: gas_M y P_M,500,0,0.0
+clearing tarde: gas_E y P_E,500,0,0.0
+"P_M,P_E,gas_M,gas_E >= 0",500,0,0.0

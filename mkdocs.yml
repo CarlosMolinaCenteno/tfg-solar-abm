@@ -69,29 +69,19 @@ nav:
   - Inicio: index.md
   - Memoria:
       - Índice: memoria/index.md
+      - Resumen / Abstract: memoria/00-resumen.md
       - 1. Introducción: memoria/01-introduccion.md
-      - 2. Motivación y antecedentes: memoria/02-motivacion.md
-      - 3. Mercado eléctrico: memoria/03-mercado-electrico.md
-      - 4. Modelo ABM: memoria/04-modelo-abm.md
-      - 5. Implementación: memoria/05-implementacion.md
-      - 6. Escenarios: memoria/06-escenarios.md
-      - 7. Análisis económico: memoria/07-analisis-economico.md
-      - 8. Conclusiones: memoria/08-conclusiones.md
+      - "2. Model: mercado y agentes": memoria/02-model.md
+      - 3. Soluciones bajo racionalidad: memoria/03-racionalidad.md
+      - 4. Aprendizaje: memoria/04-aprendizaje.md
+      - 5. Papel de las baterías: memoria/05-baterias.md
       - Bibliografía: memoria/bibliografia.md
   - Anexos:
       - A. Agente único: anexos/a-agente-unico.md
       - B. Nash heterogéneo: anexos/b-nash-heterogeneo.md
+      - Validación del modelo: anexos/validacion.md
   - Validación:
       - Índice: validacion/index.md
-      - 00. Quickstart: validacion/00_quickstart.ipynb
-      - 01. Validación de precios: validacion/01_validacion_precios.ipynb
-      - 02. Validación del almacenamiento: validacion/02_validacion_almacenamiento.ipynb
-      - 03. Validación del aprendizaje: validacion/03_validacion_aprendizaje.ipynb
-      - 04. Coherencia temporal: validacion/04_coherencia_temporal.ipynb
-      - 05. Reproducibilidad por semilla: validacion/05_reproducibilidad.ipynb
-      - 06. Diagnóstico del aprendizaje: validacion/06_diagnostico_aprendizaje.ipynb
-      - Banco de pruebas (teoría): validacion/banco_pruebas.ipynb
+      - Banco de pruebas: validacion/banco_pruebas.ipynb
   - Extras:
       - Notas de aprendizaje: extras/notas-aprendizaje.md
-      - Plan del banco de pruebas: extras/plan-banco-pruebas.md
-      - Índice aprobado del TFG: extras/indice-aprobado.md

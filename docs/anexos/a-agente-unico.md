@@ -1,281 +1,284 @@
-# Anexo A. Derivaciones detalladas de la sección 4.6
+# Anexo A. Derivaciones detalladas del Capítulo 3
 
-Este anexo recoge los cálculos paso a paso que sustentan los resultados de la sección 4.6 del Capítulo 4. Las secciones A.1–A.3 corresponden al caso del agente único (apartado 4.6.1) e incluyen la derivada primera y segunda de la función de beneficios $\pi(f)$. Las secciones A.4–A.5 corresponden al juego entre dos agentes simétricos (apartado 4.6.2) e incluyen el best-response del agente $i$ y el análisis de unicidad del equilibrio simétrico. La sección A.6 formaliza la convergencia del equilibrio de Nash al óptimo precio-aceptante en el límite $N \to \infty$ (apartado 4.6.3). Se reproducen las definiciones de las cantidades y precios al inicio de cada bloque para que las secciones puedan leerse de forma autocontenida.
+Este anexo recoge los cálculos paso a paso que sustentan los resultados analíticos del Capítulo 3, "Soluciones bajo racionalidad". Está organizado siguiendo el orden del cuerpo: las secciones A.1–A.3 corresponden al **óptimo del cártel** (§3.1) y contienen la primera y la segunda derivada del beneficio $\pi(f)$, junto con el análisis de concavidad y la conjetura de esquina; A.4–A.5 corresponden al **Nash homogéneo** (§3.2) y desarrollan la mejor respuesta del agente $i$ y la unicidad del equilibrio simétrico para $N$ agentes; A.6 formaliza el **límite precio-aceptante** $N \to \infty$ (§3.3); y A.7 desarrolla los **casos de borde** —saturación de batería y gas inactivo— mencionados en las hipótesis comunes del capítulo. Se reproducen las definiciones de cantidades y precios al inicio de cada bloque para que las secciones puedan leerse de forma autocontenida.
 
-## A.1. Notación y función de beneficios
+## Mapa cuerpo ↔ anexo
 
-Bajo las simplificaciones del apartado 4.6.1 (análisis determinista con $\varepsilon = 1$, separabilidad temporal y régimen interior), las producciones brutas son constantes:
+| Punto del cuerpo (Capítulo 3) | Se desarrolla en |
+|---|---|
+| §3.1 — descomposición de $d\pi/df$ en arbitraje y poder de mercado | A.2 |
+| §3.1 — concavidad, condición suficiente *vs.* necesaria, esquina $f = 0$ | A.3 |
+| §3.1 (hipótesis comunes) — casos de borde: saturación de batería, gas inactivo | A.7 |
+| §3.2 — $(\mathrm{CPO}_i)$ del Nash homogéneo (mecánica de derivación) | A.4 |
+| §3.2 — existencia y unicidad del equilibrio simétrico | A.5 |
+| §3.3 — convergencia al precio-aceptante ($N \to \infty$) | A.6 |
+| §3.4 — mecánica de derivación común reutilizada por el Nash heterogéneo | A.4 |
+| §3.4 — concavidad de $\pi_i$ reutilizada en el caso heterogéneo | A.5 |
 
-$$\tilde{q}^M = \alpha_M \cdot c, \qquad \tilde{q}^E = \alpha_E \cdot c$$
+La derivación específica de la heterogeneidad —condición de primer orden individual, igualación de ingresos marginales, monotonía y saturación $s_i$— se recoge en el Anexo B, que remite a este anexo para la mecánica común de derivación.
 
-Las cantidades efectivamente vendidas, las cantidades de gas y los precios de mercado, expresados como función de la fracción de almacenamiento $f$, son:
+## A.1. Notación y función de beneficios del cártel
 
-$$q^M(f) = (1 - f) \tilde{q}^M, \qquad q^E(f) = \tilde{q}^E + \eta f \tilde{q}^M$$
+Bajo las simplificaciones de §3.1 (análisis determinista con $\varepsilon = 1$, separabilidad temporal y régimen interior), el cártel concentra toda la oferta solar. Las producciones brutas **agregadas** son constantes:
 
-$$g^M(f) = D_M - q^M(f), \qquad g^E(f) = D_E - q^E(f)$$
+$$\tilde{Q}^M = N \alpha_M c, \qquad \tilde{Q}^E = N \alpha_E c$$
 
-$$P_M(f) = c_0 + \alpha_G \bigl[g^M(f)\bigr]^{\gamma_G}, \qquad P_E(f) = c_0 + \alpha_G \bigl[g^E(f)\bigr]^{\gamma_G}$$
+Las cantidades efectivamente vendidas, las cantidades cubiertas por el gas y los precios de mercado, expresados como función de la fracción común de almacenamiento $f$, son:
 
-El beneficio diario del agente, escrito explícitamente como función de $f$, es:
+$$Q^M(f) = (1 - f)\, \tilde{Q}^M, \qquad Q^E(f) = \tilde{Q}^E + \eta f\, \tilde{Q}^M$$
 
-$$\pi(f) = \underbrace{\bigl[c_0 + \alpha_G (D_M - (1-f) \tilde{q}^M)^{\gamma_G}\bigr] \cdot (1-f) \tilde{q}^M}_{=:\, U(f) \cdot V(f)} + \underbrace{\bigl[c_0 + \alpha_G (D_E - \tilde{q}^E - \eta f \tilde{q}^M)^{\gamma_G}\bigr] \cdot (\tilde{q}^E + \eta f \tilde{q}^M)}_{=:\, W(f) \cdot Z(f)}$$
+$$g^M(f) = D_M - Q^M(f), \qquad g^E(f) = D_E - Q^E(f)$$
+
+$$P_M(f) = \alpha_G \bigl[g^M(f)\bigr]^{\gamma_G}, \qquad P_E(f) = \alpha_G \bigl[g^E(f)\bigr]^{\gamma_G}$$
+
+El beneficio diario del cártel, escrito explícitamente como función de $f$, es:
+
+$$\pi(f) = \underbrace{\alpha_G \bigl[D_M - (1-f)\tilde{Q}^M\bigr]^{\gamma_G} \cdot (1-f)\tilde{Q}^M}_{=:\, U(f)\, V(f)} \;+\; \underbrace{\alpha_G \bigl[D_E - \tilde{Q}^E - \eta f \tilde{Q}^M\bigr]^{\gamma_G} \cdot \bigl(\tilde{Q}^E + \eta f \tilde{Q}^M\bigr)}_{=:\, W(f)\, Z(f)}$$
 
 ## A.2. Primera derivada
 
-La derivada se calcula aplicando la regla del producto a cada uno de los dos sumandos. Para mantener la exposición autocontenida se identifican los factores como se indica arriba: $\pi(f) = U(f) V(f) + W(f) Z(f)$.
+La derivada se calcula aplicando la regla del producto a cada uno de los dos sumandos, $\pi(f) = U(f)\,V(f) + W(f)\,Z(f)$, identificando los factores como se indica arriba: $U = P_M$, $V = Q^M$, $W = P_E$, $Z = Q^E$.
 
-### Derivada del primer sumando
+### Derivada del primer sumando (mañana)
 
 Las derivadas individuales son:
 
-$$\frac{dV}{df} = \frac{d}{df}\bigl[(1-f) \tilde{q}^M\bigr] = -\tilde{q}^M$$
+$$\frac{dV}{df} = \frac{d}{df}\bigl[(1-f)\tilde{Q}^M\bigr] = -\tilde{Q}^M$$
 
-Para $dU/df$ se aplica la regla de la cadena. La derivada interior es $d/df\bigl[D_M - (1-f) \tilde{q}^M\bigr] = \tilde{q}^M$, y la derivada exterior $d/dx\bigl[c_0 + \alpha_G x^{\gamma_G}\bigr] = \alpha_G \gamma_G x^{\gamma_G - 1}$, con $x = g^M(f)$:
+Para $dU/df$ se aplica la regla de la cadena. La derivada interior es $\dfrac{d}{df}\bigl[D_M - (1-f)\tilde{Q}^M\bigr] = \tilde{Q}^M$, y la exterior $\dfrac{d}{dx}\bigl[\alpha_G x^{\gamma_G}\bigr] = \alpha_G \gamma_G x^{\gamma_G - 1}$, con $x = g^M(f)$:
 
-$$\frac{dU}{df} = \alpha_G \gamma_G \bigl[g^M(f)\bigr]^{\gamma_G - 1} \cdot \tilde{q}^M$$
+$$\frac{dU}{df} = \alpha_G \gamma_G \bigl[g^M(f)\bigr]^{\gamma_G - 1} \cdot \tilde{Q}^M$$
 
 Por la regla del producto:
 
-$$\frac{d}{df}\bigl[U(f) V(f)\bigr] = \alpha_G \gamma_G \tilde{q}^M \bigl[g^M(f)\bigr]^{\gamma_G - 1} \cdot (1-f) \tilde{q}^M \;-\; \tilde{q}^M \bigl[c_0 + \alpha_G (g^M(f))^{\gamma_G}\bigr]$$
+$$\frac{d}{df}\bigl[U V\bigr] = \alpha_G \gamma_G \tilde{Q}^M \bigl[g^M\bigr]^{\gamma_G - 1} \cdot (1-f)\tilde{Q}^M \;-\; \tilde{Q}^M \alpha_G \bigl[g^M\bigr]^{\gamma_G} = \tilde{Q}^M \cdot \Bigl\{ \alpha_G \gamma_G \cdot Q^M \bigl[g^M\bigr]^{\gamma_G - 1} - P_M \Bigr\}$$
 
-$$= \tilde{q}^M \cdot \Bigl\{ \alpha_G \gamma_G \cdot q^M(f) \bigl[g^M(f)\bigr]^{\gamma_G - 1} - P_M(f) \Bigr\}$$
+donde se ha usado $(1-f)\tilde{Q}^M = Q^M$ y la definición de $P_M$.
 
-donde se ha usado $(1-f) \tilde{q}^M = q^M(f)$ y la definición de $P_M(f)$.
+### Derivada del segundo sumando (tarde)
 
-### Derivada del segundo sumando
+De forma análoga, $\dfrac{dZ}{df} = \eta \tilde{Q}^M$. La derivada interior es ahora $\dfrac{d}{df}\bigl[D_E - \tilde{Q}^E - \eta f \tilde{Q}^M\bigr] = -\eta \tilde{Q}^M$, de modo que:
 
-De forma análoga:
-
-$$\frac{dZ}{df} = \frac{d}{df}\bigl[\tilde{q}^E + \eta f \tilde{q}^M\bigr] = \eta \tilde{q}^M$$
-
-La derivada interior es ahora $d/df\bigl[D_E - \tilde{q}^E - \eta f \tilde{q}^M\bigr] = -\eta \tilde{q}^M$, de modo que:
-
-$$\frac{dW}{df} = \alpha_G \gamma_G \bigl[g^E(f)\bigr]^{\gamma_G - 1} \cdot (-\eta \tilde{q}^M) = -\alpha_G \gamma_G \eta \tilde{q}^M \bigl[g^E(f)\bigr]^{\gamma_G - 1}$$
+$$\frac{dW}{df} = \alpha_G \gamma_G \bigl[g^E\bigr]^{\gamma_G - 1} \cdot (-\eta \tilde{Q}^M) = -\alpha_G \gamma_G \eta \tilde{Q}^M \bigl[g^E\bigr]^{\gamma_G - 1}$$
 
 Aplicando la regla del producto:
 
-$$\frac{d}{df}\bigl[W(f) Z(f)\bigr] = -\alpha_G \gamma_G \eta \tilde{q}^M \bigl[g^E(f)\bigr]^{\gamma_G - 1} \cdot \bigl(\tilde{q}^E + \eta f \tilde{q}^M\bigr) \;+\; \eta \tilde{q}^M \bigl[c_0 + \alpha_G (g^E(f))^{\gamma_G}\bigr]$$
-
-$$= \tilde{q}^M \cdot \Bigl\{ -\alpha_G \gamma_G \eta \cdot q^E(f) \bigl[g^E(f)\bigr]^{\gamma_G - 1} + \eta P_E(f) \Bigr\}$$
+$$\frac{d}{df}\bigl[W Z\bigr] = -\alpha_G \gamma_G \eta \tilde{Q}^M \bigl[g^E\bigr]^{\gamma_G - 1} \cdot \bigl(\tilde{Q}^E + \eta f \tilde{Q}^M\bigr) \;+\; \eta \tilde{Q}^M \alpha_G \bigl[g^E\bigr]^{\gamma_G} = \tilde{Q}^M \cdot \Bigl\{ -\alpha_G \gamma_G \eta \cdot Q^E \bigl[g^E\bigr]^{\gamma_G - 1} + \eta P_E \Bigr\}$$
 
 ### Suma y forma final
 
-Sumando ambas contribuciones y agrupando $\tilde{q}^M$ como factor común:
+Sumando ambas contribuciones y agrupando $\tilde{Q}^M$ como factor común:
 
-$$\boxed{\,\frac{d\pi}{df} = \tilde{q}^M \cdot \Bigl\{ \alpha_G \gamma_G \cdot q^M(f) \bigl[g^M(f)\bigr]^{\gamma_G - 1} - P_M(f) - \alpha_G \gamma_G \eta \cdot q^E(f) \bigl[g^E(f)\bigr]^{\gamma_G - 1} + \eta P_E(f) \Bigr\}\,}$$
+$$\boxed{\,\frac{d\pi}{df} = \tilde{Q}^M \cdot \Bigl\{ \eta P_E - P_M + \alpha_G \gamma_G \bigl[\, Q^M \bigl[g^M\bigr]^{\gamma_G - 1} - \eta\, Q^E \bigl[g^E\bigr]^{\gamma_G - 1}\bigr] \Bigr\}\,}$$
 
-Como $\tilde{q}^M > 0$, la condición de primer orden $d\pi/df = 0$ equivale a anular la expresión entre llaves, lo que reordenado da la (CPO) del apartado 4.6.1.
+que es la forma agrupada empleada en §3.1: el corchete de arbitraje temporal $\eta P_E - P_M$ y el corchete de poder de mercado. Como $\tilde{Q}^M > 0$, la condición de primer orden $d\pi/df = 0$ equivale a anular la expresión entre llaves, lo que reordenado da la (CPO) de §3.1.
 
-## A.3. Segunda derivada
+## A.3. Segunda derivada y concavidad
 
-Para verificar que la solución de la (CPO) es un máximo se calcula $d^2\pi/df^2$. Para abreviar, en lo que sigue se omite la dependencia explícita en $f$. Partiendo de la expresión de $d\pi/df$, se deriva término a término.
+Para verificar que la solución de la (CPO) es un máximo se calcula $d^2\pi/df^2$. En lo que sigue se omite la dependencia explícita en $f$.
 
-### Derivadas de los precios y de las pendientes
+### A.3.1. Derivadas de los precios y de las potencias
 
 Por las reglas obtenidas en A.2:
 
-$$\frac{dP_M}{df} = \alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1} \tilde{q}^M, \qquad \frac{dP_E}{df} = -\alpha_G \gamma_G \eta \bigl[g^E\bigr]^{\gamma_G - 1} \tilde{q}^M$$
+$$\frac{dP_M}{df} = \alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1} \tilde{Q}^M, \qquad \frac{dP_E}{df} = -\alpha_G \gamma_G \eta \bigl[g^E\bigr]^{\gamma_G - 1} \tilde{Q}^M$$
 
-Para las potencias $\bigl[g^M\bigr]^{\gamma_G - 1}$ y $\bigl[g^E\bigr]^{\gamma_G - 1}$, aplicando la regla de la cadena:
+Para las potencias inframarginales, aplicando de nuevo la regla de la cadena:
 
-$$\frac{d}{df}\bigl[g^M\bigr]^{\gamma_G - 1} = (\gamma_G - 1) \bigl[g^M\bigr]^{\gamma_G - 2} \cdot \tilde{q}^M$$
+$$\frac{d}{df}\bigl[g^M\bigr]^{\gamma_G - 1} = (\gamma_G - 1)\bigl[g^M\bigr]^{\gamma_G - 2} \tilde{Q}^M, \qquad \frac{d}{df}\bigl[g^E\bigr]^{\gamma_G - 1} = -(\gamma_G - 1)\bigl[g^E\bigr]^{\gamma_G - 2} \eta \tilde{Q}^M$$
 
-$$\frac{d}{df}\bigl[g^E\bigr]^{\gamma_G - 1} = -(\gamma_G - 1) \bigl[g^E\bigr]^{\gamma_G - 2} \cdot \eta \tilde{q}^M$$
+### A.3.2. Derivada de cada término inframarginal
 
-### Derivada de cada término
+Sea $T_M := \alpha_G \gamma_G \cdot Q^M \bigl[g^M\bigr]^{\gamma_G - 1}$. Aplicando la regla del producto y usando $dQ^M/df = -\tilde{Q}^M$:
 
-Sea $T_M(f) := \alpha_G \gamma_G \cdot q^M [g^M]^{\gamma_G - 1}$. Aplicando la regla del producto:
+$$\frac{dT_M}{df} = -\alpha_G \gamma_G \tilde{Q}^M \bigl[g^M\bigr]^{\gamma_G - 1} + \alpha_G \gamma_G (\gamma_G - 1)\tilde{Q}^M \cdot Q^M \bigl[g^M\bigr]^{\gamma_G - 2} = \alpha_G \gamma_G \tilde{Q}^M \bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)Q^M}{g^M} - 1 \right]$$
 
-$$\frac{dT_M}{df} = \alpha_G \gamma_G \cdot \frac{dq^M}{df} \cdot \bigl[g^M\bigr]^{\gamma_G - 1} + \alpha_G \gamma_G \cdot q^M \cdot \frac{d}{df}\bigl[g^M\bigr]^{\gamma_G - 1}$$
+Análogamente, para $T_E := \alpha_G \gamma_G \eta \cdot Q^E \bigl[g^E\bigr]^{\gamma_G - 1}$, usando $dQ^E/df = \eta\tilde{Q}^M$:
 
-$$= -\alpha_G \gamma_G \tilde{q}^M \bigl[g^M\bigr]^{\gamma_G - 1} + \alpha_G \gamma_G (\gamma_G - 1) \tilde{q}^M \cdot q^M \cdot \bigl[g^M\bigr]^{\gamma_G - 2}$$
+$$\frac{dT_E}{df} = \alpha_G \gamma_G \eta^2 \tilde{Q}^M \bigl[g^E\bigr]^{\gamma_G - 1} \left[ 1 - \frac{(\gamma_G - 1)Q^E}{g^E} \right]$$
 
-$$= \alpha_G \gamma_G \tilde{q}^M \bigl[g^M\bigr]^{\gamma_G - 1} \cdot \left[ \frac{(\gamma_G - 1) q^M}{g^M} - 1 \right]$$
+### A.3.3. Combinación
 
-Análogamente, para $T_E(f) := \alpha_G \gamma_G \eta \cdot q^E [g^E]^{\gamma_G - 1}$:
+Recordando que $\dfrac{d\pi}{df} = \tilde{Q}^M(T_M - P_M - T_E + \eta P_E)$, se obtiene:
 
-$$\frac{dT_E}{df} = \alpha_G \gamma_G \eta \cdot \eta \tilde{q}^M \cdot \bigl[g^E\bigr]^{\gamma_G - 1} - \alpha_G \gamma_G \eta \cdot q^E \cdot (\gamma_G - 1) \bigl[g^E\bigr]^{\gamma_G - 2} \cdot \eta \tilde{q}^M$$
+$$\frac{d^2\pi}{df^2} = \tilde{Q}^M \left( \frac{dT_M}{df} - \frac{dP_M}{df} - \frac{dT_E}{df} + \eta \frac{dP_E}{df} \right)$$
 
-$$= \alpha_G \gamma_G \eta^2 \tilde{q}^M \bigl[g^E\bigr]^{\gamma_G - 1} \cdot \left[ 1 - \frac{(\gamma_G - 1) q^E}{g^E} \right]$$
+Sustituyendo las cuatro derivadas y agrupando los factores comunes $\alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1}$ y $\alpha_G \gamma_G \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1}$:
 
-### Combinación
+$$\boxed{\,\frac{d^2\pi}{df^2} = (\tilde{Q}^M)^2 \alpha_G \gamma_G \left\{ \underbrace{\bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)Q^M}{g^M} - 2 \right]}_{=:\, \Theta^M} + \underbrace{\eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)Q^E}{g^E} - 2 \right]}_{=:\, \Theta^E} \right\}\,}$$
 
-Recordando que $\dfrac{d\pi}{df} = \tilde{q}^M (T_M - P_M - T_E + \eta P_E)$, se obtiene:
+El $-2$ de cada corchete recoge el efecto cóncavo de la doble penalización cantidad-precio del término cruzado de la regla del producto; el sumando $(\gamma_G - 1)Q^p/g^p$ recoge la contribución convexa proporcional a la cuota del cártel sobre el gas residual del periodo $p$.
 
-$$\frac{d^2 \pi}{df^2} = \tilde{q}^M \left( \frac{dT_M}{df} - \frac{dP_M}{df} - \frac{dT_E}{df} + \eta \frac{dP_E}{df} \right)$$
+### A.3.4. Condición suficiente *vs.* necesaria
 
-Sustituyendo las cuatro derivadas calculadas y agrupando los factores comunes $\alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1}$ y $\alpha_G \gamma_G \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1}$:
+Las cantidades $\alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1}$ y $\alpha_G \gamma_G \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1}$ son estrictamente positivas en el régimen interior. Una condición **suficiente** para la concavidad estricta es que cada corchete sea negativo por separado, esto es, que en ambos periodos
 
-$$\frac{d^2 \pi}{df^2} = (\tilde{q}^M)^2 \left\{ \alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q^M}{g^M} - 2 \right] + \alpha_G \gamma_G \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q^E}{g^E} - 2 \right] \right\}$$
+$$\frac{Q^p}{g^p} < \frac{2}{\gamma_G - 1}, \qquad p \in \{M, E\}.$$
 
-### Signo y concavidad
+Con $\gamma_G = 1{,}3$ esto exige $Q^p/g^p < 2/0{,}3 \approx 6{,}67$, cota que se cumple holgadamente: el barrido numérico de los parámetros base arroja $Q^M/g^M \le 1{,}904$ (alcanzado en $f = 0$) y $Q^E/g^E \le 1{,}386$ (alcanzado en $f = 1$), muy por debajo del umbral.
 
-Las cantidades $\alpha_G \gamma_G [g^M]^{\gamma_G - 1}$ y $\alpha_G \gamma_G [g^E]^{\gamma_G - 1}$ son estrictamente positivas en el régimen interior. Por tanto, el signo de $d^2 \pi / df^2$ depende del signo de los corchetes:
+La condición es, sin embargo, **sólo suficiente**. La concavidad global no requiere $\Theta^M < 0$ y $\Theta^E < 0$ por separado, sino únicamente que su suma sea negativa, $\Theta^M + \Theta^E < 0$. Cuando un periodo viola su corchete —pongamos $\Theta^M > 0$— el otro, con $\Theta^E < 0$ suficientemente grande en valor absoluto, puede compensar y preservar $\Theta^M + \Theta^E < 0$. El límite donde se anula la concavidad es la curva en el espacio $(f, \gamma_G)$ definida por
 
-$$\frac{(\gamma_G - 1) q^M}{g^M} - 2 < 0 \quad \Longleftrightarrow \quad \frac{q^M}{g^M} < \frac{2}{\gamma_G - 1}$$
+$$\bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)Q^M}{g^M} - 2 \right] + \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)Q^E}{g^E} - 2 \right] = 0,$$
 
-y análogamente para el periodo de tarde. Con $\gamma_G = 1{,}3$, esto exige $q^M / g^M < 2 / 0{,}3 \approx 6{,}7$, condición que se cumple holgadamente en los escenarios considerados, donde la oferta solar es minoritaria respecto a la cobertura por gas. Bajo estas condiciones $d^2 \pi / df^2 < 0$ y la función de beneficios es estrictamente cóncava en $f$, de modo que la solución de la (CPO) caracteriza el máximo global del problema en el régimen interior.
+y la pérdida efectiva de concavidad —existencia de un intervalo de $f$ con $d^2\pi/df^2 > 0$— sólo se produce cuando $\gamma_G$ es elevado y la cuota del cártel sobre el gas residual es suficientemente alta en al menos un periodo, de modo que el corchete positivo de ese periodo no llega a compensarse con el negativo del otro.
 
-## A.4. Best-response del agente $i$ en el juego de N=2
+### A.3.5. Esquina típicamente en $f = 0$
+
+Cuando la concavidad se pierde, el óptimo del cártel se desplaza a una esquina, y esa esquina es **típicamente $f = 0$** (no almacenar) en lugar de $f = 1$ (almacenar todo lo posible). El argumento se apoya en el signo de $d\pi/df$ evaluada en los bordes.
+
+En $f = 0$, $Q^M = \tilde{Q}^M$ es máxima y $Q^E = \tilde{Q}^E$ mínima, de modo que $g^E$ es grande. Para $\gamma_G$ elevado, la sensibilidad del precio vespertino $\alpha_G \gamma_G \bigl[g^E\bigr]^{\gamma_G - 1}$ se dispara: aunque la cantidad inframarginal vespertina $Q^E$ sea pequeña en $f = 0$, el término de poder de mercado $-\eta\, \alpha_G \gamma_G\, Q^E \bigl[g^E\bigr]^{\gamma_G - 1}$ domina sobre el arbitraje $\eta P_E - P_M$, y el corchete completo de $d\pi/df$ se vuelve negativo:
+
+$$\left.\frac{d\pi}{df}\right|_{f=0} \le 0 \quad \text{para } \gamma_G \text{ suficientemente alto.}$$
+
+El cártel no quiere almacenar ni siquiera la primera unidad: hacerlo aportaría volumen vespertino, pero a costa de devaluar las unidades vespertinas inframarginales que vende a precio muy alto.
+
+En $f = 1$, en cambio, $Q^M = 0$ y $Q^E$ es máxima, $g^E$ pequeña: el arbitraje $\eta P_E - P_M$ se ha invertido —el precio matutino ha subido tanto y el vespertino bajado tanto que ya no compensa seguir trasvasando— y de nuevo $d\pi/df\big|_{f=1} \le 0$. Con la derivada negativa en ambos extremos y una eventual región convexa intermedia, $\pi$ es esencialmente decreciente en $[0, 1]$, de modo que el máximo global se alcanza en $f = 0$, donde $\pi(0) > \pi(1)$. Económicamente, el cártel prefiere preservar el precio vespertino antes que cerrar el arbitraje, y el mismo poder de mercado que lo lleva a almacenar poco en el régimen cóncavo lo empuja a no almacenar nada cuando $\gamma_G$ es extremo.
+
+### A.3.6. Evidencia numérica de la conjetura de esquina
+
+La figura siguiente resuelve el experimento descrito: para cuatro valores crecientes $\gamma_G \in \{1{,}3;\, 2;\, 3;\, 5\}$, con el resto de parámetros en su configuración base de §3.5, se evalúa $\pi(f)$ y $d^2\pi/df^2$ sobre $[0, 1]$ y se localiza el óptimo.
+
+![Beneficio del cártel $\pi(f)$ (fila superior) y su segunda derivada $d^2\pi/df^2$ (fila inferior) para $\gamma_G \in \{1{,}3;\, 2;\, 3;\, 5\}$. La vertical roja marca el óptimo; la banda roja de la fila inferior marca la región donde $d^2\pi/df^2 > 0$.](figures/fig_A_concavidad.png)
+
+Los hallazgos confirman el análisis de A.3.4–A.3.5:
+
+- **$\gamma_G = 1{,}3$ y $\gamma_G = 2$** (umbrales $6{,}67$ y $2{,}0$): la condición suficiente se cumple en todo $[0, 1]$, $\pi$ es estrictamente cóncava y el óptimo es interior ($f^* = 0{,}475$ y $f^* = 0{,}424$, respectivamente).
+- **$\gamma_G = 3$** (umbral $1{,}0$): la condición suficiente **se viola en la mañana** —$Q^M/g^M = 1{,}904 > 1$ en $f = 0$— y también en la tarde para $f$ alto, pero la **compensación entre periodos** preserva la concavidad global: no aparece ninguna región con $d^2\pi/df^2 > 0$ y el óptimo sigue siendo interior ($f^* = 0{,}263$). Es la ilustración directa de que la condición es sólo suficiente.
+- **$\gamma_G = 5$** (umbral $0{,}5$): las violaciones son ya tan intensas que la compensación no basta. Aparece una **región convexa** en $f \in [0{,}334;\, 0{,}724]$ y el óptimo cae en la **esquina $f \approx 0$**: el cártel deja de almacenar para preservar el precio vespertino, exactamente como predice A.3.5.
+
+En la parametrización efectivamente empleada en el TFG ($\gamma_G = 1{,}3$) el problema es estrictamente cóncavo y la (CPO) interior caracteriza el máximo global; la conjetura de esquina es relevante sólo como advertencia sobre el comportamiento del modelo bajo costes de gas muy convexos.
+
+## A.4. Mejor respuesta del agente $i$ en el Nash homogéneo
 
 ### A.4.1. Notación
 
-Bajo las simplificaciones del apartado 4.6.2 (análisis determinista, separabilidad temporal y régimen interior), los dos agentes simétricos comparten la misma producción bruta:
+Bajo las simplificaciones de §3.2, los $N$ agentes simétricos comparten producción bruta $\tilde{q}_i^M = \alpha_M c$, $\tilde{q}_i^E = \alpha_E c$. Las cantidades vendidas dependen sólo de la decisión propia:
 
-$$\tilde{q}^M = \alpha_M \cdot c, \qquad \tilde{q}^E = \alpha_E \cdot c$$
+$$q_i^M(f_i) = (1 - f_i)\tilde{q}_i^M, \qquad q_i^E(f_i) = \tilde{q}_i^E + \eta f_i \tilde{q}_i^M$$
 
-Las cantidades vendidas dependen exclusivamente de la decisión propia del agente:
+mientras que la oferta agregada y los precios dependen del vector completo de decisiones:
 
-$$q_i^M(f_i) = (1 - f_i) \tilde{q}^M, \qquad q_i^E(f_i) = \tilde{q}^E + \eta f_i \tilde{q}^M, \qquad i \in \{1, 2\}$$
+$$Q^p = \sum_{j=1}^{N} q_j^p, \qquad g^p = D_p - Q^p, \qquad P_p = \alpha_G \bigl[g^p\bigr]^{\gamma_G}, \quad p \in \{M, E\}$$
 
-mientras que la oferta agregada y los precios dependen de las decisiones de ambos:
-
-$$Q^M(f_1, f_2) = q_1^M + q_2^M, \qquad Q^E(f_1, f_2) = q_1^E + q_2^E$$
-
-$$g^M = D_M - Q^M, \qquad g^E = D_E - Q^E$$
-
-$$P_M = c_0 + \alpha_G [g^M]^{\gamma_G}, \qquad P_E = c_0 + \alpha_G [g^E]^{\gamma_G}$$
-
-El beneficio del agente $i$, dado $f_j$ fijo, es:
-
-$$\pi_i(f_i; f_j) = P_M \cdot q_i^M(f_i) + P_E \cdot q_i^E(f_i)$$
+El beneficio del agente $i$, dado el resto de decisiones fijo, es $\pi_i = P_M\, q_i^M + P_E\, q_i^E$.
 
 ### A.4.2. Derivadas auxiliares respecto a $f_i$
 
-Las derivadas individuales son inmediatas:
+Las derivadas individuales son inmediatas: $\partial q_i^M/\partial f_i = -\tilde{q}_i^M$ y $\partial q_i^E/\partial f_i = \eta \tilde{q}_i^M$. Como las cantidades del resto de agentes no varían con $f_i$, la oferta agregada cambia exactamente como la individual:
 
-$$\frac{\partial q_i^M}{\partial f_i} = -\tilde{q}^M, \qquad \frac{\partial q_i^E}{\partial f_i} = \eta \tilde{q}^M$$
+$$\frac{\partial Q^M}{\partial f_i} = -\tilde{q}_i^M, \qquad \frac{\partial Q^E}{\partial f_i} = \eta \tilde{q}_i^M \;\;\Longrightarrow\;\; \frac{\partial g^M}{\partial f_i} = \tilde{q}_i^M, \quad \frac{\partial g^E}{\partial f_i} = -\eta \tilde{q}_i^M$$
 
-Como la cantidad del rival $q_j$ no varía con $f_i$, la oferta agregada cambia exactamente como la individual:
+de modo que las derivadas de los precios son las mismas que en el caso del cártel, con $\tilde{q}_i^M$ en lugar de $\tilde{Q}^M$:
 
-$$\frac{\partial Q^M}{\partial f_i} = \frac{\partial q_i^M}{\partial f_i} = -\tilde{q}^M, \qquad \frac{\partial Q^E}{\partial f_i} = \frac{\partial q_i^E}{\partial f_i} = \eta \tilde{q}^M$$
-
-de modo que las derivadas del gas y de los precios son las mismas que en el caso del agente único:
-
-$$\frac{\partial g^M}{\partial f_i} = \tilde{q}^M, \qquad \frac{\partial g^E}{\partial f_i} = -\eta \tilde{q}^M$$
-
-$$\frac{\partial P_M}{\partial f_i} = \alpha_G \gamma_G [g^M]^{\gamma_G - 1} \tilde{q}^M, \qquad \frac{\partial P_E}{\partial f_i} = -\alpha_G \gamma_G \eta [g^E]^{\gamma_G - 1} \tilde{q}^M$$
+$$\frac{\partial P_M}{\partial f_i} = \alpha_G \gamma_G \bigl[g^M\bigr]^{\gamma_G - 1} \tilde{q}_i^M, \qquad \frac{\partial P_E}{\partial f_i} = -\alpha_G \gamma_G \eta \bigl[g^E\bigr]^{\gamma_G - 1} \tilde{q}_i^M$$
 
 ### A.4.3. Derivada parcial del beneficio
 
-Aplicando la regla del producto sobre $\pi_i = P_M \cdot q_i^M + P_E \cdot q_i^E$:
+Aplicando la regla del producto a $\pi_i = P_M\, q_i^M + P_E\, q_i^E$ y sustituyendo las derivadas de A.4.2:
 
-$$\frac{\partial \pi_i}{\partial f_i} = \frac{\partial P_M}{\partial f_i} \cdot q_i^M + P_M \cdot \frac{\partial q_i^M}{\partial f_i} + \frac{\partial P_E}{\partial f_i} \cdot q_i^E + P_E \cdot \frac{\partial q_i^E}{\partial f_i}$$
+$$\frac{\partial \pi_i}{\partial f_i} = \frac{\partial P_M}{\partial f_i} q_i^M + P_M \frac{\partial q_i^M}{\partial f_i} + \frac{\partial P_E}{\partial f_i} q_i^E + P_E \frac{\partial q_i^E}{\partial f_i}$$
 
-Sustituyendo las derivadas obtenidas en A.4.2:
+$$\boxed{\,\frac{\partial \pi_i}{\partial f_i} = \tilde{q}_i^M \cdot \Bigl\{ \eta P_E - P_M + \alpha_G \gamma_G \bigl[\, q_i^M \bigl[g^M\bigr]^{\gamma_G - 1} - \eta\, q_i^E \bigl[g^E\bigr]^{\gamma_G - 1}\bigr] \Bigr\}\,}$$
 
-$$= \alpha_G \gamma_G \tilde{q}^M [g^M]^{\gamma_G - 1} \cdot q_i^M - P_M \tilde{q}^M - \alpha_G \gamma_G \eta \tilde{q}^M [g^E]^{\gamma_G - 1} \cdot q_i^E + \eta P_E \tilde{q}^M$$
-
-Sacando $\tilde{q}^M$ como factor común se obtiene la forma compacta utilizada en el apartado 4.6.2:
-
-$$\boxed{\,\frac{\partial \pi_i}{\partial f_i} = \tilde{q}^M \cdot \Bigl\{ \alpha_G \gamma_G \cdot q_i^M [g^M]^{\gamma_G - 1} - P_M - \alpha_G \gamma_G \eta \cdot q_i^E [g^E]^{\gamma_G - 1} + \eta P_E \Bigr\}\,}$$
-
-La diferencia esencial respecto al caso del agente único (sección A.2) reside en que las cantidades inframarginales que multiplican a las pendientes son las **individuales** $q_i^M$ y $q_i^E$, no las agregadas $Q^M$ y $Q^E$. Esta diferencia es la que captura la atenuación del poder de mercado al pasar del cártel al juego de Nash. La condición de primer orden $\partial \pi_i / \partial f_i = 0$ equivale a anular la expresión entre llaves; reordenada, da la (CPO$_i$) del apartado 4.6.2.
+La única diferencia respecto al cártel (A.2) es que las cantidades inframarginales que multiplican a las pendientes son las **individuales** $q_i^M$, $q_i^E$, no las agregadas $Q^M$, $Q^E$. Esta diferencia es la que captura la atenuación del poder de mercado al pasar del cártel al juego de Nash: cada agente sólo internaliza el efecto de su decisión sobre sus propias cantidades. Anulando la expresión entre llaves —$\tilde{q}_i^M > 0$— y reordenando se obtiene la $(\mathrm{CPO}_i)$ de §3.2. Esta misma mecánica de derivación es la que reutiliza el Anexo B para el caso heterogéneo, sin más que sustituir $\tilde{q}_i^M = \alpha_M c$ por $\tilde{q}_i^M = \alpha_M c_i$.
 
 ## A.5. Hessiana y unicidad del equilibrio simétrico
 
 ### A.5.1. Concavidad estricta del beneficio en $f_i$
 
-Para garantizar que la mejor respuesta $\text{BR}_i(f_j)$ del agente $i$ es única se verifica $\partial^2 \pi_i / \partial f_i^2 < 0$. Por brevedad, definamos:
+Para garantizar que la mejor respuesta $\mathrm{BR}_i(f_{-i})$ es única se verifica $\partial^2 \pi_i / \partial f_i^2 < 0$. El cálculo es formalmente idéntico al de A.3, con las cantidades individuales en lugar de las agregadas. Definiendo $T_M^{(i)} := \alpha_G \gamma_G\, q_i^M \bigl[g^M\bigr]^{\gamma_G - 1}$ y $T_E^{(i)} := \alpha_G \gamma_G \eta\, q_i^E \bigl[g^E\bigr]^{\gamma_G - 1}$, y procediendo como en A.3.2–A.3.3:
 
-$$T_M^{(i)} := \alpha_G \gamma_G \cdot q_i^M [g^M]^{\gamma_G - 1}, \qquad T_E^{(i)} := \alpha_G \gamma_G \eta \cdot q_i^E [g^E]^{\gamma_G - 1}$$
+$$\frac{\partial^2 \pi_i}{\partial f_i^2} = (\tilde{q}_i^M)^2 \alpha_G \gamma_G \left\{ \bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)q_i^M}{g^M} - 2 \right] + \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)q_i^E}{g^E} - 2 \right] \right\}$$
 
-Aplicando la regla del producto a $T_M^{(i)}$ respecto a $f_i$:
-
-$$\frac{\partial T_M^{(i)}}{\partial f_i} = \alpha_G \gamma_G \left[ \frac{\partial q_i^M}{\partial f_i} [g^M]^{\gamma_G - 1} + q_i^M (\gamma_G - 1) [g^M]^{\gamma_G - 2} \frac{\partial g^M}{\partial f_i} \right]$$
-
-$$= \alpha_G \gamma_G \tilde{q}^M [g^M]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q_i^M}{g^M} - 1 \right]$$
-
-Análogamente para $T_E^{(i)}$:
-
-$$\frac{\partial T_E^{(i)}}{\partial f_i} = \alpha_G \gamma_G \eta^2 \tilde{q}^M [g^E]^{\gamma_G - 1} \left[ 1 - \frac{(\gamma_G - 1) q_i^E}{g^E} \right]$$
-
-Recordando que $\partial \pi_i / \partial f_i = \tilde{q}^M (T_M^{(i)} - P_M - T_E^{(i)} + \eta P_E)$, la segunda derivada es:
-
-$$\frac{\partial^2 \pi_i}{\partial f_i^2} = \tilde{q}^M \left( \frac{\partial T_M^{(i)}}{\partial f_i} - \frac{\partial P_M}{\partial f_i} - \frac{\partial T_E^{(i)}}{\partial f_i} + \eta \frac{\partial P_E}{\partial f_i} \right)$$
-
-Sustituyendo y agrupando los factores comunes $\alpha_G \gamma_G \tilde{q}^M [g^M]^{\gamma_G - 1}$ y $\alpha_G \gamma_G \eta^2 \tilde{q}^M [g^E]^{\gamma_G - 1}$:
-
-$$\frac{\partial^2 \pi_i}{\partial f_i^2} = (\tilde{q}^M)^2 \alpha_G \gamma_G \left\{ [g^M]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q_i^M}{g^M} - 2 \right] + \eta^2 [g^E]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q_i^E}{g^E} - 2 \right] \right\}$$
-
-La expresión es formalmente idéntica a la obtenida en A.3 para el agente único, con la única diferencia de que las cantidades inframarginales son las individuales $q_i^M$, $q_i^E$. La función $\pi_i$ es estrictamente cóncava en $f_i$ siempre que se cumpla:
-
-$$\frac{q_i^M}{g^M} < \frac{2}{\gamma_G - 1}, \qquad \frac{q_i^E}{g^E} < \frac{2}{\gamma_G - 1}$$
-
-Como $q_i = Q/2$ en el equilibrio simétrico con $N = 2$, las condiciones son aún menos restrictivas que las del cártel (donde $\kappa = Q$) y se cumplen holgadamente con los parámetros del modelo. La mejor respuesta $\text{BR}_i(f_j)$ queda así caracterizada como el único maximizador de $\pi_i(\cdot; f_j)$ en $[0, 1]$.
+La función $\pi_i$ es estrictamente cóncava en $f_i$ siempre que $q_i^p/g^p < 2/(\gamma_G - 1)$ en ambos periodos. Como en el equilibrio simétrico $q_i^p = Q^p/N$, esta condición es **menos restrictiva** que la del cártel (donde la cantidad internalizada es $Q^p$) y se relaja conforme aumenta $N$: la cuña inframarginal por agente se diluye. La mejor respuesta queda así caracterizada como el único maximizador de $\pi_i$ en $[0, 1]$.
 
 ### A.5.2. Unicidad del equilibrio simétrico
 
 Sea
 
-$$\Phi(f) := \frac{\partial \pi_i}{\partial f_i} \bigg|_{f_1 = f_2 = f}$$
+$$\Phi(f) := \frac{\partial \pi_i}{\partial f_i} \bigg|_{f_1 = \cdots = f_N = f}$$
 
-la pendiente del beneficio del agente $i$ a lo largo de la diagonal $f_1 = f_2 = f$. El equilibrio de Nash simétrico $f^N$ es la raíz de $\Phi$ en $[0, 1]$. Para garantizar su unicidad basta probar que $\Phi$ es estrictamente decreciente. Por la regla de la cadena:
+la pendiente del beneficio del agente $i$ a lo largo de la diagonal simétrica. El equilibrio de Nash simétrico $f^N$ es la raíz de $\Phi$ en $[0, 1]$; para garantizar su unicidad basta probar que $\Phi$ es estrictamente decreciente. Al moverse a lo largo de la diagonal, $f_i$ y las $N - 1$ estrategias de los rivales varían simultáneamente, de modo que por la regla de la cadena:
 
-$$\Phi'(f) = \frac{\partial^2 \pi_i}{\partial f_i^2} + \frac{\partial^2 \pi_i}{\partial f_i \partial f_j}$$
+$$\Phi'(f) = \frac{\partial^2 \pi_i}{\partial f_i^2} + (N - 1)\,\frac{\partial^2 \pi_i}{\partial f_i\, \partial f_j}$$
 
-donde ambas derivadas se evalúan en el punto simétrico. La diagonal ya se calculó en A.5.1. Para la cruzada se observa que, al derivar respecto a $f_j$, las cantidades $q_i^M$ y $q_i^E$ no cambian (no dependen de $f_j$), pero sí $g^M$ y $g^E$, que lo hacen exactamente igual que cuando se deriva respecto a $f_i$:
+donde todas las derivadas se evalúan en el punto simétrico. La diagonal $\partial^2 \pi_i/\partial f_i^2$ ya se calculó en A.5.1. Para la cruzada se observa que, al derivar respecto a $f_j$ ($j \neq i$), las cantidades propias $q_i^M$, $q_i^E$ no cambian (no dependen de $f_j$), pero sí $g^M$ y $g^E$, que lo hacen exactamente igual que respecto a $f_i$:
 
-$$\frac{\partial g^M}{\partial f_j} = \tilde{q}^M, \qquad \frac{\partial g^E}{\partial f_j} = -\eta \tilde{q}^M$$
+$$\frac{\partial g^M}{\partial f_j} = \tilde{q}_j^M, \qquad \frac{\partial g^E}{\partial f_j} = -\eta \tilde{q}_j^M$$
 
-Procediendo análogamente a A.5.1, los términos en los que cambia el cálculo son:
+Por simetría $\tilde{q}_j^M = \tilde{q}_i^M = \tilde{q}^M$. Repitiendo el cálculo de A.5.1, los términos que sobreviven son los que provienen de la variación de las potencias $\bigl[g^p\bigr]^{\gamma_G - 1}$ (no los del cambio de $q_i^p$, que ahora es nulo):
 
-$$\frac{\partial T_M^{(i)}}{\partial f_j} = \alpha_G \gamma_G (\gamma_G - 1) \tilde{q}^M \cdot q_i^M [g^M]^{\gamma_G - 2}$$
+$$\frac{\partial^2 \pi_i}{\partial f_i\, \partial f_j} = (\tilde{q}^M)^2 \alpha_G \gamma_G \left\{ \bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)q_i^M}{g^M} - 1 \right] + \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1)q_i^E}{g^E} - 1 \right] \right\}$$
 
-$$\frac{\partial T_E^{(i)}}{\partial f_j} = -\alpha_G \gamma_G \eta^2 (\gamma_G - 1) \tilde{q}^M \cdot q_i^E [g^E]^{\gamma_G - 2}$$
+(el corchete lleva $-1$ en lugar de $-2$ porque desaparece la penalización directa cantidad-precio del propio agente). Sumando la diagonal y los $N - 1$ términos cruzados:
 
-mientras que las derivadas $\partial P_M / \partial f_j$ y $\partial P_E / \partial f_j$ coinciden con las de $f_i$. Reagrupando:
+$$\Phi'(f) = (\tilde{q}^M)^2 \alpha_G \gamma_G \left\{ \bigl[g^M\bigr]^{\gamma_G - 1} \left[ \frac{N(\gamma_G - 1)q_i^M}{g^M} - (N + 1) \right] + \eta^2 \bigl[g^E\bigr]^{\gamma_G - 1} \left[ \frac{N(\gamma_G - 1)q_i^E}{g^E} - (N + 1) \right] \right\}$$
 
-$$\frac{\partial^2 \pi_i}{\partial f_i \partial f_j} = (\tilde{q}^M)^2 \alpha_G \gamma_G \left\{ [g^M]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q_i^M}{g^M} - 1 \right] + \eta^2 [g^E]^{\gamma_G - 1} \left[ \frac{(\gamma_G - 1) q_i^E}{g^E} - 1 \right] \right\}$$
+Así, $\Phi'(f) < 0$ siempre que en ambos periodos la cantidad **individual** satisfaga
 
-Sumando con la diagonal de A.5.1:
+$$\frac{q_i^p}{g^p} < \frac{N + 1}{N\,(\gamma_G - 1)},$$
 
-$$\Phi'(f) = (\tilde{q}^M)^2 \alpha_G \gamma_G \left\{ [g^M]^{\gamma_G - 1} \left[ \frac{2(\gamma_G - 1) q_i^M}{g^M} - 3 \right] + \eta^2 [g^E]^{\gamma_G - 1} \left[ \frac{2(\gamma_G - 1) q_i^E}{g^E} - 3 \right] \right\}$$
+condición que, para $N = 30$ y $\gamma_G = 1{,}3$, exige $q_i^p/g^p < (31/30)/0{,}3 \approx 3{,}44$, holgadamente satisfecha (en simetría $q_i^p = Q^p/N \le 1{,}904/30 \approx 0{,}063$). Conforme $N \to \infty$ la cota tiende a $1/(\gamma_G - 1)$ mientras $q_i^p \to 0$, de modo que la unicidad se preserva en todo el rango de $N$. Bajo esta condición $\Phi$ es estrictamente decreciente en $[0, 1]$ y admite a lo sumo una raíz. La existencia de raíz se sigue del teorema del valor intermedio aplicado a $\Phi$, que es continua y típicamente positiva en $f = 0$ (predomina el arbitraje cuando no hay almacenamiento) y negativa en $f = 1$ (predomina el efecto cantidad). En consecuencia, el equilibrio de Nash simétrico $f^N$ existe y es único.
 
-$\Phi'(f) < 0$ siempre que se cumpla la condición —ligeramente más restrictiva que la de la concavidad de $\pi_i$ en $f_i$—:
+> *Caso $N = 2$.* Para dos agentes la fórmula se reduce a $\Phi'(f) = \partial^2\pi_i/\partial f_i^2 + \partial^2\pi_i/\partial f_i\partial f_j$ (un único término cruzado), con la condición $q_i^p/g^p < \tfrac{3}{2}\,(\gamma_G - 1)^{-1}$; coincide con la del Anexo legacy al particularizar la expresión general anterior en $N = 2$.
 
-$$\frac{q_i^M}{g^M} < \frac{3}{2(\gamma_G - 1)}, \qquad \frac{q_i^E}{g^E} < \frac{3}{2(\gamma_G - 1)}$$
+## A.6. Convergencia al precio-aceptante en el límite $N \to \infty$
 
-Con $\gamma_G = 1{,}3$ esto exige $q_i / g < 3 / 0{,}6 = 5$, condición que se cumple holgadamente en los escenarios considerados. Bajo ella, $\Phi$ es estrictamente decreciente en $[0, 1]$, lo que implica que admite a lo sumo una raíz. La existencia de raíz —y por tanto del equilibrio de Nash simétrico— se sigue del teorema del valor intermedio aplicado a una función continua que típicamente toma valores positivos en $f = 0$ (incentivos al arbitraje cuando no hay almacenamiento) y negativos en $f = 1$ (predominio del efecto cantidad). En consecuencia, el equilibrio de Nash simétrico $f^N$ existe y es único.
-
-## A.6. Convergencia del equilibrio de Nash al precio-aceptante en el límite $N \to \infty$
-
-Esta sección formaliza el resultado de convergencia presentado en el cuerpo del apartado 4.6.3: bajo una sucesión de juegos con $N$ agentes simétricos cuya capacidad agregada permanece constante, el equilibrio de Nash simétrico $f^N$ converge al óptimo del agente precio-aceptante $f^*_{\text{pa}}$ cuando $N \to \infty$.
+Esta sección formaliza el resultado de §3.3: bajo una sucesión de juegos con $N$ agentes simétricos cuya capacidad agregada permanece constante, el equilibrio de Nash simétrico $f^N$ converge al óptimo del agente precio-aceptante cuando $N \to \infty$.
 
 ### A.6.1. Familia de juegos y parametrización del límite
 
-Considérese una sucesión de juegos indexada por $N \in \mathbb{N}$, en la que la capacidad individual del agente representativo se escala inversamente al número de jugadores:
+Considérese una sucesión de juegos indexada por $N \in \mathbb{N}$, con capacidad individual escalada inversamente al número de jugadores, $c^{(N)} = C/N$, para una capacidad agregada $C > 0$ fija. Las cantidades vendidas en simetría se expresan en términos de las agregadas, que son **independientes de $N$**:
 
-$$c^{(N)} = \frac{C}{N}$$
+$$q_i^{p,(N)}(f) = \frac{1}{N}\, Q^p(f), \qquad Q^M(f) = (1-f)\alpha_M C, \quad Q^E(f) = \alpha_E C + \eta f \alpha_M C$$
 
-para una capacidad agregada $C > 0$ fija. Bajo esta parametrización, las producciones brutas individuales y las cantidades vendidas en simetría se expresan en términos de las cantidades agregadas, que son **independientes de $N$**:
+En consecuencia, las cantidades de gas $g^p(f) = D_p - Q^p(f)$ y los precios $P_p(f) = \alpha_G \bigl[g^p(f)\bigr]^{\gamma_G}$ no dependen de $N$, mientras que las cantidades individuales decrecen como $1/N$.
 
-$$\tilde{q}^{p,(N)} = \alpha_p \cdot c^{(N)} = \frac{\alpha_p C}{N}, \qquad q_i^{p,(N)}(f) = \frac{1}{N} \cdot Q^p(f), \qquad p \in \{M, E\}$$
+### A.6.2. Reescritura de la $(\mathrm{CPO}_i)$ con el factor $1/N$ explícito
 
-con
+Sustituyendo $q_i^p = Q^p/N$ en la condición de primer orden del Nash simétrico, el factor $1/N$ se extrae de forma natural:
 
-$$Q^M(f) = (1 - f) \alpha_M C, \qquad Q^E(f) = \alpha_E C + \eta f \alpha_M C$$
+$$P_M(f^N) - \eta P_E(f^N) = \frac{\alpha_G \gamma_G}{N} \Bigl\{ Q^M(f^N)\bigl[g^M(f^N)\bigr]^{\gamma_G - 1} - \eta\, Q^E(f^N)\bigl[g^E(f^N)\bigr]^{\gamma_G - 1} \Bigr\}$$
 
-En consecuencia, las cantidades de gas $g^p(f) = D_p - Q^p(f)$ y los precios $P_p(f) = c_0 + \alpha_G [g^p(f)]^{\gamma_G}$ no dependen de $N$, mientras que las cantidades individuales $q_i^p(f)$ decrecen como $1/N$.
-
-### A.6.2. Reescritura de la (CPO) con el factor $1/N$ explícito
-
-Sustituyendo $q_i^p = Q^p / N$ en la condición de primer orden del Nash simétrico (apartado 4.6.3), el factor $1/N$ se extrae de forma natural:
-
-$$P_M(f^N) - \eta P_E(f^N) \;=\; \frac{\alpha_G \gamma_G}{N} \cdot \Bigl\{ Q^M(f^N) \bigl[g^M(f^N)\bigr]^{\gamma_G - 1} - \eta\, Q^E(f^N) \bigl[g^E(f^N)\bigr]^{\gamma_G - 1} \Bigr\}$$
-
-El corchete del lado derecho es continuo en $f$ y está acotado en $[0, 1]$ (las cantidades $Q^p$, $g^p$ y sus potencias son funciones continuas y estrictamente positivas en el régimen interior). Por tanto, el lado derecho de la (CPO) es del orden $\mathcal{O}(1/N)$ uniformemente en $f$.
+El corchete del lado derecho es continuo en $f$ y está acotado en $[0, 1]$ (las cantidades $Q^p$, $g^p$ y sus potencias son continuas y estrictamente positivas en el régimen interior). Por tanto el lado derecho es del orden $\mathcal{O}(1/N)$ uniformemente en $f$.
 
 ### A.6.3. Convergencia del equilibrio
 
-Sea $\{f^N\}_{N \in \mathbb{N}}$ la sucesión de equilibrios de Nash simétricos. Como $f^N \in [0, 1]$ para todo $N$, la sucesión está acotada y, por el teorema de Bolzano–Weierstrass, admite al menos una subsucesión convergente. Denotamos por $f^{\infty}$ cualquier punto de acumulación.
+Sea $\{f^N\}_{N \in \mathbb{N}}$ la sucesión de equilibrios de Nash simétricos. Como $f^N \in [0, 1]$ para todo $N$, la sucesión está acotada y, por el teorema de Bolzano–Weierstrass, admite al menos una subsucesión convergente; denótese por $f^\infty$ cualquier punto de acumulación. Tomando límite en la $(\mathrm{CPO}_i)$ reescrita a lo largo de tal subsucesión, el lado derecho tiende a cero (numerador acotado, $1/N \to 0$) y el izquierdo a $P_M(f^\infty) - \eta P_E(f^\infty)$ por continuidad. Se concluye:
 
-Tomando límite en la (CPO) reescrita en A.6.2 a lo largo de una tal subsucesión: el lado derecho tiende a cero (numerador acotado, $1/N \to 0$), mientras que el lado izquierdo tiende a $P_M(f^{\infty}) - \eta P_E(f^{\infty})$ por continuidad de los precios en $f$. Se concluye:
+$$P_M(f^\infty) = \eta\, P_E(f^\infty),$$
 
-$$P_M(f^{\infty}) = \eta P_E(f^{\infty})$$
+que es exactamente la condición de arbitraje pura del agente precio-aceptante (§3.3). La función $\Delta(f) := P_M(f) - \eta P_E(f)$ es continua y estrictamente monótona en $f$ (diferencia de dos potencias estrictamente convexas con pendientes de signo opuesto), de modo que admite a lo sumo una raíz en $[0, 1]$. Si dicha raíz existe —es decir, si $\Delta$ cambia de signo en el intervalo, condición que se cumple en el escenario considerado— todos los puntos de acumulación coinciden y la sucesión completa converge:
 
-que es exactamente la condición de arbitraje puro del agente precio-aceptante presentada en el apartado 4.6.1. Bajo las condiciones del modelo, la función $\Delta(f) := P_M(f) - \eta P_E(f)$ es continua y estrictamente monótona en $f$ (se obtiene como diferencia de dos potencias estrictamente convexas con pendientes de signo opuesto), de modo que $\Delta$ admite a lo sumo una raíz en $[0, 1]$. Si dicha raíz existe —es decir, si $\Delta$ cambia de signo en el intervalo, condición que se cumple en el escenario considerado—, entonces todos los puntos de acumulación coinciden y la sucesión completa converge:
+$$f^N \;\xrightarrow{\;N \to \infty\;}\; f^*_{\text{pa}},$$
 
-$$f^N \;\xrightarrow{\;N \to \infty\;}\; f^*_{\text{pa}}$$
+donde $f^*_{\text{pa}}$ es la fracción óptima del agente precio-aceptante. Este resultado fundamenta rigurosamente el supuesto de competencia del Capítulo 3: la hipótesis de precio-aceptante no es arbitraria, sino el comportamiento asintótico del equilibrio de Nash cuando el número de agentes simétricos tiende a infinito y la capacidad agregada se mantiene constante.
 
-donde $f^*_{\text{pa}}$ es la fracción óptima del agente precio-aceptante. Este resultado proporciona el fundamento riguroso de la afirmación del apartado 4.6.3: la hipótesis de competencia perfecta adoptada en el Capítulo 3 no es arbitraria, sino que corresponde al comportamiento asintótico del equilibrio de Nash cuando el número de agentes simétricos tiende a infinito y la capacidad agregada se mantiene constante.
+## A.7. Casos de borde
+
+Las secciones A.1–A.6 trabajan en el **régimen interior** (batería no saturada, gas activo en ambos periodos), donde el óptimo se caracteriza por la (CPO) interior. Esta sección desarrolla las dos ramas degeneradas que §3.5 verifica numéricamente que no se activan bajo los parámetros base, pero que el modelo admite en otras parametrizaciones (almacenamiento muy generoso, demanda baja o capacidad solar elevada). Se presentan en su forma agregada para el cártel; el caso heterogéneo individual se recoge en el Anexo B.
+
+### A.7.1. Régimen con batería saturada
+
+La energía que el cártel deriva a la tarde es $S(f) = \eta f \tilde{Q}^M$ mientras la batería no se llene. Con capacidad de almacenamiento agregada $s_{\text{agg}}$, la batería satura cuando $\eta f \tilde{Q}^M > s_{\text{agg}}$, esto es, para fracciones por encima de la **frontera de saturación**:
+
+$$f_{\text{borde}} = \frac{s_{\text{agg}}}{\eta\, \tilde{Q}^M}.$$
+
+Para $f > f_{\text{borde}}$, la energía vespertina añadida queda fijada en $s_{\text{agg}}$, independiente de $f$: la cantidad vespertina vendida $Q^E = \tilde{Q}^E + s_{\text{agg}}$ y el precio $P_E$ pasan a ser constantes, $\partial Q^E/\partial f = 0$. La fracción que se siga derivando de la mañana por encima de $f_{\text{borde}}$ no llega a la tarde —se pierde por curtailment—, de modo que la cantidad matutina $Q^M = (1-f)\tilde{Q}^M$ sigue cayendo sin contrapartida vespertina. La derivada del beneficio en el régimen saturado se reduce al término matutino:
+
+$$\left.\frac{d\pi}{df}\right|_{\text{sat}} = \frac{d}{df}\bigl[P_M Q^M\bigr] = -\tilde{Q}^M \cdot \Bigl\{ P_M - \alpha_G \gamma_G\, Q^M \bigl[g^M\bigr]^{\gamma_G - 1} \Bigr\}$$
+
+El término entre llaves es el ingreso marginal de la oferta matutina, estrictamente positivo cuando $P_M > 0$ y la cuña inframarginal no excede al precio; por tanto $d\pi/df\big|_{\text{sat}} < 0$ en todo el régimen saturado. Las condiciones de Karush–Kuhn–Tucker del problema con la cota $f \le f_{\text{borde}}$ son entonces
+
+$$\frac{d\pi}{df} \le 0, \qquad f^* \le f_{\text{borde}}, \qquad \frac{d\pi}{df}\cdot\bigl(f_{\text{borde}} - f^*\bigr) = 0,$$
+
+cuya lectura es directa: si la raíz de la (CPO) interior cumple $f^*_{\text{int}} \le f_{\text{borde}}$, el óptimo es esa raíz interior; en caso contrario el óptimo se localiza en la cota, $f^* = f_{\text{borde}}$, con $d\pi/df < 0$ (el cártel querría almacenar más pero la batería lo impide). En los parámetros base, $f_{\text{borde}} = s_{\text{agg}}/(\eta\,\tilde{Q}^M) \approx 6{,}35$ queda muy fuera de $[0, 1]$ y la restricción nunca se activa (§3.6.1).
+
+### A.7.2. Régimen con gas inactivo
+
+El segundo borde aparece cuando la oferta solar de un periodo cubre o supera su demanda, $Q^p \ge D_p$. Como el gas no puede producir cantidades negativas, $g^p$ se ancla en cero, el precio del periodo colapsa a $P_p = \alpha_G \cdot 0^{\gamma_G} = 0$ y ese periodo deja de aportar ingresos. El beneficio pierde la contribución correspondiente y la (CPO) se modifica eliminando su término. Para el periodo vespertino —el candidato natural, pues $Q^E$ crece con $f$— una vez alcanzado $Q^E \ge D_E$ se tiene $P_E = 0$ y
+
+$$\left.\frac{d\pi}{df}\right|_{g^E = 0} = \frac{d}{df}\bigl[P_M Q^M\bigr] = -\tilde{Q}^M \cdot \Bigl\{ P_M - \alpha_G \gamma_G\, Q^M \bigl[g^M\bigr]^{\gamma_G - 1} \Bigr\} < 0,$$
+
+idéntica en forma a la del régimen saturado: una vez que el precio vespertino cae a cero, almacenar más reduce las ventas matutinas sin generar ingreso vespertino, de modo que el incentivo al arbitraje desaparece y el óptimo nunca empuja $Q^E$ por encima de $D_E$. Análogamente, el borde matutino $Q^M \ge D_M$ sólo podría darse con $f$ negativo y no es admisible. Con los parámetros base, cerrar el gas vespertino exigiría $f \ge 2{,}06 > 1$ (y el matutino, $f < 0$), de modo que el gas permanece activo en ambos periodos en todo $[0, 1]$ y el régimen interior es el relevante, como verifica §3.6.

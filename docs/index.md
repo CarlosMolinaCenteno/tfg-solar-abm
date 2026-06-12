@@ -9,20 +9,32 @@
 
 ## Sobre el proyecto
 
-Modelo basado en agentes (ABM) que simula un mercado eléctrico con productores solares heterogéneos. Cada productor decide qué fracción de su energía matutina almacena en una batería para venderla por la tarde. No optimiza: aprende de forma adaptativa a partir de los precios observados.
+Modelo basado en agentes (ABM) que simula un mercado eléctrico con productores
+solares heterogéneos. Cada productor decide qué fracción de su energía matutina
+almacena en una batería para venderla por la tarde. No optimiza: **aprende de
+forma adaptativa** a partir de los beneficios observados, mediante una regla de
+refuerzo (z-score del beneficio realizado sobre la fracción jugada).
 
 El trabajo combina tres tipos de análisis:
 
-- **Teórico** — equilibrios cooperativos, de Nash y precio-aceptantes que sirven de referente analítico (cap. 4 §4.6 y anexos).
-- **Computacional** — simulación con [Mesa](https://mesa.readthedocs.io) y banco de pruebas que valida cada elemento del modelo (sección de validación).
-- **Económico** — interpretación de los resultados en términos de excedentes, precios y mix energético (cap. 6 y 7).
+- **Teórico** — equilibrios de cártel, de Nash (homogéneo y heterogéneo) y
+  precio-aceptante que sirven de referente analítico (cap. 3 y anexos A–B).
+- **Computacional** — simulación con [Mesa](https://mesa.readthedocs.io),
+  banco de pruebas que ancla los referentes teóricos y validación reproducible
+  del modelo (sección de validación).
+- **Económico** — efecto del almacenamiento sobre precios, mix energético y
+  excedentes de los agentes (cap. 5).
 
 ## Cómo navegar este sitio
 
-- **[Memoria](memoria/index.md)** — los ocho capítulos del TFG y la bibliografía.
-- **[Anexos](anexos/a-agente-unico.md)** — derivaciones analíticas que apoyan el cap. 4.
-- **[Validación](validacion/index.md)** — notebooks ejecutables que comprueban que la implementación reproduce la lógica económica del modelo.
-- **[Extras](extras/notas-aprendizaje.md)** — notas de aprendizaje (diagnóstico del proceso), plan del banco de pruebas e índice aprobado.
+- **[Memoria](memoria/index.md)** — los cinco capítulos del TFG, el resumen y la
+  bibliografía.
+- **[Anexos](anexos/a-agente-unico.md)** — derivaciones del agente único (A),
+  Nash heterogéneo (B) y validación del modelo.
+- **[Validación](validacion/index.md)** — banco de pruebas teórico y validación
+  reproducible.
+- **[Extras](extras/notas-aprendizaje.md)** — notas de aprendizaje (diagnóstico
+  de las reglas exploradas).
 
 ## Repositorio
 

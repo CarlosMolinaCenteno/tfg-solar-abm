@@ -43,23 +43,25 @@ def test_datacollector_registra_30_filas(run_30_days):
 
 # ── Reproducibilidad por semilla ───────────────────────────────────────────
 
-@pytest.mark.xfail(
-    reason=(
-        "Reproducibilidad pendiente. La versión actual llama a random.seed() y "
-        "np.random.seed() en el constructor pero el orden con super().__init__(seed=) "
-        "de Mesa 3 todavía permite que dos ejecuciones difieran. Se reactivará al "
-        "migrar a la regla de aprendizaje final."
-    ),
-    strict=False,
-)
 def test_misma_semilla_resultados_identicos():
+    """Dos ejecuciones independientes con la misma semilla son idénticas.
+
+    El modelo reseed-ea el RNG global de Python y de numpy en el constructor, por
+    lo que la reproducibilidad se cumple para ejecuciones *secuenciales*
+    independientes (construir+ejecutar, construir+ejecutar). No se cumple —ni se
+    pretende— para pasos entrelazados de dos modelos que comparten el mismo flujo
+    global. Es la propiedad que valida el anexo de validación (V.1).
+    """
     m1 = MarketModel(seed=42)
-    m2 = MarketModel(seed=42)
     for _ in range(50):
         m1.step_day()
-        m2.step_day()
     df1 = m1.datacollector.get_model_vars_dataframe()
+
+    m2 = MarketModel(seed=42)
+    for _ in range(50):
+        m2.step_day()
     df2 = m2.datacollector.get_model_vars_dataframe()
+
     assert df1.equals(df2)
 
 

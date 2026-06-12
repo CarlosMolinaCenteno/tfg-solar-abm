@@ -11,28 +11,44 @@ from mesa.datacollection import DataCollector
 
 # ── Default parameters ──────────────────────────────────────────────────────
 
+# Parametrización INTERIOR (la del TFG): oferta solar agregada N*c = 75, óptimo interior.
+# El cártel cae en f*~0.475 y el Nash homogéneo en f^N~0.639 (ver cap. 3). Es la
+# configuración con la que se evalúa el aprendizaje en el cap. 4.
 DEFAULT_PARAMS = dict(
     N=30,
-    DAYS=200,
+    DAYS=500,
     STORAGE_GRAN=10,
     ALPHA_M=0.7,
     ALPHA_E=0.3,
-    DEMAND_M=60.0,
+    DEMAND_M=80.0,
     DEMAND_E=120.0,
-    C0=10.0,
+    C0=0,
     ALPHA_G=0.5,
     GAMMA_G=1.3,
-    WEATHER_VAR=0, #se ha dejado a 0 para hacer pruebas
+    WEATHER_VAR=0.15,
+    CAP_LOW=2.5,
+    CAP_HIGH=2.5,        # capacidad homogénea c = 2.5 (heterogénea: usar [2.0, 3.0])
+    STOR_CAP_LOW=10,
+    STOR_CAP_HIGH=10,    # batería holgada: el óptimo nunca cae en saturación
+    ETA_LOW=0.9,
+    ETA_HIGH=0.9,        # eficiencia común; variar el rango para eficiencia heterogénea
+    PHI_LOW=0.05,
+    PHI_HIGH=0.3,
+    BETA_LOW=2.0,
+    BETA_HIGH=3.0,       # exploración heterogénea; beta en [1,5] degrada algo la convergencia
+)
+
+# Parametrización ESQUINA (histórica): solar insuficiente, óptimo trivial f=1.0 para todos.
+# Se conserva por si se quiere reproducir el escenario de solución de esquina.
+PARAMS_ESQUINA = dict(
+    N=30,
+    DEMAND_M=60.0,
+    DEMAND_E=120.0,
     CAP_LOW=0.8,
     CAP_HIGH=1.2,
     STOR_CAP_LOW=0.5,
     STOR_CAP_HIGH=2.0,
-    ETA_LOW=0.9,
-    ETA_HIGH=0.9, #se han dejado ambas iguales para que el almacenamiento sea igual de eficiente para todos los agentes, pero se pueden variar para estudiar el impacto de eficiencia heterogénea en los resultados
-    PHI_LOW=0.05,
-    PHI_HIGH=0.3,
-    BETA_LOW=1.0,
-    BETA_HIGH=5.0,
+    STORAGE_GRAN=10,
 )
 
 
@@ -106,6 +122,11 @@ class SolarAgent(Agent):
         self.qE = self.qE_raw + self.stored
 
     def update_learning(self, profit):
+        # Regla de aprendizaje elegida (cap. 4): z-score del beneficio realizado,
+        # actualizando SOLO la fracción elegida, sin decaimiento de las demás.
+        # Los contrafactuales se calculan únicamente para fijar la escala de la señal
+        # (media y desviación típica de los beneficios del día), no para actualizar
+        # las atracciones de las fracciones no jugadas.
         self.profit = profit
         if not self.storage_enabled:
             return
@@ -113,27 +134,26 @@ class SolarAgent(Agent):
         price_M = self.model.price_M
         price_E = self.model.price_E
 
-        # Compute counterfactual profit for ALL fractions
+        # Beneficios contrafactuales de TODAS las fracciones, solo para media y std
         pi_all = {}
-        max_profit = 0.0
         for f in self.fractions:
             stored_f = min(self.storage_capacity, self.eta * f * self.qM_raw)
             sold_M_f = (1.0 - f) * self.qM_raw
             sold_E_f = self.qE_raw + stored_f
             pi_all[f] = price_M * sold_M_f + price_E * sold_E_f
-            if pi_all[f] > max_profit:
-                max_profit = pi_all[f]
 
-        # Normalize counterfactual profits: (pi - pi_max) / std(pi)
-        # Preserves relative ranking, controls scale for softmax interaction
         pi_values = np.array(list(pi_all.values()))
+        pi_mean = pi_values.mean()
         pi_std = pi_values.std()
         if pi_std < 1e-8:
-            pi_std = 1.0  # avoid division by zero when all fractions yield same profit
+            return  # día degenerado (todas las fracciones rinden lo mismo): no se actualiza
 
-        for f in self.fractions:
-            regret_norm = (pi_all[f] - max_profit) / pi_std
-            self.attract[f] = (1 - self.phi) * self.attract[f] + self.phi * regret_norm
+        # z-score del beneficio realizado: positivo si la fracción elegida estuvo por
+        # encima de la media del día, negativo si por debajo. Premia y castiga.
+        z = (profit - pi_mean) / pi_std
+        f_chosen = self.last_choice
+        self.attract[f_chosen] = (1 - self.phi) * self.attract[f_chosen] + self.phi * z
+        # Las fracciones no elegidas conservan su atracción (memoria persistente).
 
 
 # ── Model ───────────────────────────────────────────────────────────────────

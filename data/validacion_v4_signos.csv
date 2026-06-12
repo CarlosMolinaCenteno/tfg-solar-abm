@@ -1,0 +1,7 @@
+metric,signo_esperado,frac_ok
+gas_total_pct,>0,1.0
+cost_pct,<0,1.0
+dCS,>0,1.0
+dSolar,>0,1.0
+dGasRent,<0,1.0
+dTotal,>0,1.0

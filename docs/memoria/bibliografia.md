@@ -8,11 +8,14 @@ Referencias verificadas y citadas en el TFG. Formato APA 7ª edición.
 
 Alyousef, A., Adepetu, A., y de Meer, H. (2017). Analysis and model-based predictions of solar PV and battery adoption in Germany: an agent-based approach. *Computer Science - Research and Development*, *32*(1-2), 211-223. https://doi.org/10.1007/s00450-016-0304-9
 
-DEPRECATED ---- BloombergNEF. (2024). *Lithium-Ion Battery Price Survey 2024*. BloombergNEF. https://about.bnef.com/blog/lithium-ion-battery-pack-prices-hit-record-low-of-115-per-kilowatt-hour/
+California ISO. (2016). *Fast facts: What the duck curve tells us about managing a green grid*. California Independent System Operator. https://www.caiso.com/documents/flexibleresourceshelprenewables_fastfacts.pdf
 
 Camerer, C., y Ho, T.-H. (1999). Experience-weighted attraction learning in normal form games. *Econometrica*, *67*(4), 827-874. https://doi.org/10.1111/1468-0262.00054
 
 https://econweb.ucsd.edu/~jandreon/Econ264/papers/Camerer%20Ho%20EMetrica%201999.pdf
+
+
+Erev, I., y Roth, A. E. (1998). Predicting how people play games: Reinforcement learning in experimental games with unique, mixed strategy equilibria. *American Economic Review*, *88*(4), 848-881. https://www.jstor.org/stable/117009
 
 
 Fudenberg, D., y Tirole, J. (1991). *Game theory*. MIT Press. ISBN 9780262061414.
@@ -28,36 +31,35 @@ Sepulveda, N. A., Jenkins, J. D., Edington, A., Mallapragada, D. S., y Lester, R
 https://dspace.mit.edu/handle/1721.1/138145
 
 
+Sioshansi, R., Denholm, P., Jenkin, T., y Weiss, J. (2009). Estimating the value of electricity storage in PJM: Arbitrage and some welfare effects. *Energy Economics*, *31*(2), 269-277. https://doi.org/10.1016/j.eneco.2008.10.005
+
+
 Weidlich, A., y Veit, D. (2008). A critical survey of agent-based wholesale electricity market models. *Energy Economics*, *30*(4), 1728-1759. https://doi.org/10.1016/j.eneco.2008.01.003
 
 ---
 
 ## Notas sobre las referencias
 
-- **Camerer y Ho (1999)**: Referencia fundacional del modelo *Experience-Weighted Attraction* (EWA). Se cita en el Cap. 2 (apartado 2.3) y en el Cap. 4 (apartado 4.3) como marco teórico de la regla de aprendizaje empleada en el modelo, que constituye un caso particular del EWA.
+Las menciones a "Cap. X" siguen la estructura nueva del TFG (5 capítulos: 1 Introducción, 2 Model, 3 Soluciones bajo racionalidad, 4 Aprendizaje, 5 Baterías). El recuento de citas se hace contra las versiones `_reducido.md`, que son las que van al cuerpo entregable.
 
-- **Fudenberg y Tirole (1991)**: Manual canónico de teoría de juegos no cooperativa. Se cita en el Cap. 4 (apartado 4.6.2) al introducir el concepto de equilibrio de Nash en el juego de almacenamiento entre agentes simétricos.
+- **Alyousef, Adepetu y de Meer (2017)**: Modelo ABM sobre adopción de PV solar y baterías en hogares alemanes. Citada en el Cap. 1 como ejemplo del uso de ABM en estudios de almacenamiento distribuido.
 
-- **Weidlich y Veit (2008)**: Survey crítico de los modelos ABM aplicados a mercados eléctricos mayoristas. Se cita en el Cap. 2 como referencia general sobre el uso de ABM en formación de precios.
+- **California ISO (2016)**: Ficha *Fast Facts* del operador del sistema de California sobre la *curva del pato* (*duck curve*). Citada en el Cap. 1 para dar fuente formal al término *curva del pato* en la apertura. Verificada vía web (jun. 2026); confirmar la URL exacta al maquetar.
 
-- **Ringler, Keles y Fichtner (2016)**: Revisión de literatura sobre ABM aplicados a redes inteligentes y mercados con renovables. Se cita en el Cap. 2 sobre la integración de renovables.
+- **Camerer y Ho (1999)**: Referencia fundacional del modelo *Experience-Weighted Attraction* (EWA). Citada en el Cap. 1 (§1.2) y en el Cap. 4 (mecánica del aprendizaje) como marco teórico de la regla empleada, que constituye un caso particular del EWA.
 
-- **Alyousef, Adepetu y de Meer (2017)**: Modelo ABM sobre adopción de PV solar y baterías en hogares alemanes. Reemplaza una referencia inicialmente apuntada (Zhang y Li, 2017) que no se pudo verificar como real.
+- **Erev y Roth (1998)**: *Predicting how people play games* (AER). Referencia canónica del aprendizaje por refuerzo en juegos experimentales. Citada en el Cap. 1 (§1.2) como antecedente del que el EWA de Camerer y Ho (1999) es generalización.
 
-- **IEA (2024a)**: Informe *Renewables 2024* de la Agencia Internacional de la Energía. Se cita en el Cap. 1 para el dato sobre crecimiento de capacidad solar instalada (2.260 GW en 2024 vs. ~180 GW una década antes).
+- **Fudenberg y Tirole (1991)**: Manual canónico de teoría de juegos no cooperativa. Citada en el Cap. 1 y en el Cap. 3 al introducir el equilibrio de Nash en el juego de almacenamiento.
 
-- **IEA (2024b)**: Informe sobre almacenamiento con baterías y transición energética. Se cita en el Cap. 1 y Cap. 2 como respaldo institucional al papel del almacenamiento intradiario. Dato clave: 42 GW de baterías instalados globalmente en 2023.
+- **IEA (2024a)**: Informe *Renewables 2024* de la Agencia Internacional de la Energía. Citada en el Cap. 1 para el dato sobre crecimiento de capacidad solar instalada.
 
-- **BloombergNEF (2024)**: *Lithium-Ion Battery Price Survey*. Se cita en el Cap. 2.2 para la reducción de costes del pack de baterías de ion-litio (de 780 USD/kWh en 2013 a 115 USD/kWh en 2024, >85% de reducción).
+- **IEA (2024b)**: Informe sobre almacenamiento con baterías y transición energética. Citada en el Cap. 1 como respaldo institucional al papel del almacenamiento intradiario.
 
-- **Sepulveda et al. (2021)**: Análisis del espacio de diseño para almacenamiento de larga duración en sistemas eléctricos descarbonizados. Se cita en el Cap. 2.2 para acotar que las baterías de litio solo son competitivas para 2-4 horas, justificando el enfoque intradiario del modelo.
+- **Ringler, Keles y Fichtner (2016)**: Revisión de literatura sobre ABM aplicados a redes inteligentes y mercados con renovables. Citada en el Cap. 1.
 
----
+- **Sepulveda et al. (2021)**: Análisis del espacio de diseño para almacenamiento de larga duración en sistemas eléctricos descarbonizados. Citada en el Cap. 1 para acotar que las baterías de litio solo son competitivas para 2-4 horas, justificando el enfoque intradiario del modelo.
 
-## Pendiente de incorporación
+- **Sioshansi et al. (2009)**: *Estimating the value of electricity storage in PJM* (Energy Economics). Estima el valor del arbitraje de un almacenamiento precio-aceptante y sus efectos de bienestar. Citada en el Cap. 1 (§1.1) para situar la aportación del trabajo "un paso antes" del operador precio-aceptante: cómo se *aprende* el arbitraje y cómo la acción conjunta *mueve* los precios.
 
-A lo largo del desarrollo del TFG pueden surgir referencias adicionales, especialmente en:
-
-- **Sección 4.6** (equilibrio teórico): posibles referencias a teoría de juegos clásica (Fudenberg y Tirole, Mas-Colell), análisis de equilibrio competitivo, y modelos de optimización energética.
-- **Cap. 2.1** (mercados eléctricos): referencias específicas sobre el fenómeno de la *duck curve* y precios negativos en mercados con alta penetración solar (CAISO, NREL).
-- **Cap. 2.2** (almacenamiento distribuido): ya incorporadas BloombergNEF (2024) y Sepulveda et al. (2021). Posible adición futura: IRENA, *Renewable Power Generation Costs in 2023*.
+- **Weidlich y Veit (2008)**: Survey crítico de los modelos ABM aplicados a mercados eléctricos mayoristas. Citada en el Cap. 1 como referencia general sobre el uso de ABM en formación de precios.
